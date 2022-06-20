@@ -1238,7 +1238,7 @@ retry:
 		builder.WriteString(fmt.Sprintf(" [%s]", cnames[0]))
 	}
 
-	isCDN, cdnName, err := hp.CdnCheck(ip)
+	isCDN, cdnName, err := hp.CdnCheck(ip,URL.Host)
 	if scanopts.OutputCDN && isCDN && err == nil {
 		builder.WriteString(fmt.Sprintf(" [%s]", cdnName))
 	}
@@ -1636,7 +1636,7 @@ func (r *Runner) skipCDNPort(host string, port string) bool {
 	// pick the first ip as target
 	hostIP := dnsData.A[0]
 
-	isCdnIP, _, err := r.hp.CdnCheck(hostIP)
+	isCdnIP, _, err := r.hp.CdnCheck(hostIP,host)
 	if err != nil {
 		return false
 	}
