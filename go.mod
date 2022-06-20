@@ -1,4 +1,4 @@
-module github.com/l0ner/httpx
+module github.com/l0ners/httpx
 
 go 1.17
 
