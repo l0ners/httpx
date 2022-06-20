@@ -5,7 +5,7 @@ import (
 	"os/signal"
 
 	"github.com/projectdiscovery/gologger"
-	"github.com/l0ners/httpx/runner"
+	"github.com/projectdiscovery/httpx/runner"
 )
 
 func main() {
