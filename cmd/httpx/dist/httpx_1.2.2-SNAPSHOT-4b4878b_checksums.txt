@@ -1,0 +1,5 @@
+6bcb1b3dc9e6b059d1daaa7deef877592a70e1438a89da57fa01f58cd1f7a9cd  httpx_1.2.2-SNAPSHOT-4b4878b_linux_amd64.tar.gz
+77a97ee86489b0f9115a325e74a0ae0238f8a5c694f87b617d7770f0473afd8f  httpx_1.2.2-SNAPSHOT-4b4878b_darwin_amd64.tar.gz
+991253874a9e3c75f37e6a54e1760bb1d10beb735e51763cc476b44ff1eaa6f6  httpx_1.2.2-SNAPSHOT-4b4878b_linux_386.tar.gz
+baf19a0d32d1401e0fbffe175eb9e4be0a130b8b2aeb723f028369645d830654  httpx_1.2.2-SNAPSHOT-4b4878b_linux_arm64.tar.gz
+e648d8ba7119383660a66db07e13e59df480ded88c5789deebf0cebdd646a204  httpx_1.2.2-SNAPSHOT-4b4878b_darwin_arm64.tar.gz

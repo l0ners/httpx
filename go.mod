@@ -58,6 +58,7 @@ require (
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
+	github.com/bitly/go-simplejson v0.5.0 // indirect
 	github.com/cnf/structhash v0.0.0-20201127153200-e1b16c1ebc08 // indirect
 	github.com/dimchansky/utfbom v1.1.1 // indirect
 	github.com/gorilla/css v1.0.0 // indirect

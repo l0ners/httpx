@@ -59,6 +59,7 @@ type scanOptions struct {
 	OutputIP                  bool
 	OutputCName               bool
 	OutputCDN                 bool
+	OutputWAF				  bool		//添加waf识别
 	OutputResponseTime        bool
 	PreferHTTPS               bool
 	NoFallback                bool
@@ -106,6 +107,7 @@ func (s *scanOptions) Clone() *scanOptions {
 		OutputIP:                  s.OutputIP,
 		OutputCName:               s.OutputCName,
 		OutputCDN:                 s.OutputCDN,
+		OutputWAF:				   s.OutputWAF,			//新增waf识别
 		OutputResponseTime:        s.OutputResponseTime,
 		PreferHTTPS:               s.PreferHTTPS,
 		NoFallback:                s.NoFallback,
@@ -190,7 +192,8 @@ type Options struct {
 	DebugResponse             bool
 	Pipeline                  bool
 	HTTP2Probe                bool
-	OutputCDN                 bool
+	OutputCDN                 bool			//新增waf识别
+	OutputWAF				  bool
 	OutputResponseTime        bool
 	NoFallback                bool
 	NoFallbackScheme          bool
@@ -273,6 +276,7 @@ func ParseOptions() *Options {
 		flagSet.BoolVar(&options.OutputCName, "cname", false, "display host cname"),
 		flagSet.BoolVar(&options.Asn, "asn", false, "display host asn information"),
 		flagSet.BoolVar(&options.OutputCDN, "cdn", false, "display cdn in use"),
+		flagSet.BoolVar(&options.OutputWAF, "waf", false, "display waf in use"),		//新增waf识别
 		flagSet.BoolVar(&options.Probe, "probe", false, "display probe status"),
 	)
 
