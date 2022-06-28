@@ -11,7 +11,6 @@ import (
 func main() {
 	// Parse the command line flags and read config files
 	options := runner.ParseOptions()
-
 	httpxRunner, err := runner.New(options)
 	if err != nil {
 		gologger.Fatal().Msgf("Could not create runner: %s\n", err)

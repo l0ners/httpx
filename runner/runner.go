@@ -91,6 +91,7 @@ func New(options *Options) (*Runner, error) {
 	httpxOptions.Unsafe = options.Unsafe
 	httpxOptions.UnsafeURI = options.RequestURI
 	httpxOptions.CdnCheck = options.OutputCDN
+	//httpxOptions.WafCheck = options.OutputWAF			//新增waf识别
 	httpxOptions.ExcludeCdn = options.ExcludeCDN
 	if options.CustomHeaders.Has("User-Agent:") {
 		httpxOptions.RandomAgent = false
@@ -205,6 +206,7 @@ func New(options *Options) (*Runner, error) {
 	scanopts.OutputIP = options.OutputIP
 	scanopts.OutputCName = options.OutputCName
 	scanopts.OutputCDN = options.OutputCDN
+	scanopts.OutputWAF = options.OutputWAF
 	scanopts.OutputResponseTime = options.OutputResponseTime
 	scanopts.NoFallback = options.NoFallback
 	scanopts.NoFallbackScheme = options.NoFallbackScheme
@@ -1242,6 +1244,11 @@ retry:
 	if scanopts.OutputCDN && isCDN && err == nil {
 		builder.WriteString(fmt.Sprintf(" [%s]", cdnName))
 	}
+	//新增waf识别
+	isWAF, wafName, err := hp.WafCheck(URL.Host)
+	if scanopts.OutputWAF && isWAF && err == nil {
+		builder.WriteString(fmt.Sprintf(" [%s]", wafName))
+	}
 
 	if scanopts.OutputResponseTime {
 		builder.WriteString(fmt.Sprintf(" [%s]", resp.Duration))
@@ -1470,6 +1477,8 @@ retry:
 		CNAMEs:           cnames,
 		CDN:              isCDN,
 		CDNName:          cdnName,
+		WAF:              isWAF,			//新增waf识别
+		WAFName:          wafName,
 		ResponseTime:     resp.Duration.String(),
 		Technologies:     technologies,
 		FinalURL:         finalURL,
@@ -1510,6 +1519,7 @@ type Result struct {
 	TLSData          *cryptoutil.TLSData `json:"tls-grab,omitempty" csv:"tls-grab"`
 	Hashes           map[string]string   `json:"hashes,omitempty" csv:"hashes"`
 	CDNName          string              `json:"cdn-name,omitempty" csv:"cdn-name"`
+	WAFName          string              `json:"waf-name,omitempty" csv:"waf-name"`		//新增waf识别
 	Port             string              `json:"port,omitempty" csv:"port"`
 	raw              string
 	URL              string `json:"url,omitempty" csv:"url"`
@@ -1544,6 +1554,7 @@ type Result struct {
 	VHost            bool              `json:"vhost,omitempty" csv:"vhost"`
 	WebSocket        bool              `json:"websocket,omitempty" csv:"websocket"`
 	CDN              bool              `json:"cdn,omitempty" csv:"cdn"`
+	WAF              bool              `json:"waf,omitempty" csv:"waf"`			//新增waf识别
 	HTTP2            bool              `json:"http2,omitempty" csv:"http2"`
 	Pipeline         bool              `json:"pipeline,omitempty" csv:"pipeline"`
 }
